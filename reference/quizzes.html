@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Banco Mestre de Quizzes — Workshop AILOCAL</title>
+  <link rel="stylesheet" href="../assets/css/web.css" />
+  <style>
+    .course-title {
+      background: var(--accent);
+      color: white;
+      padding: 0.6rem 1rem;
+      border-radius: 6px;
+      margin-top: 2.5rem;
+    }
+    .quiz-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 1.2rem;
+      margin: 1.2rem 0;
+    }
+    .quiz-card h3 {
+      margin-top: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+    .quiz-link {
+      font-size: 0.85rem;
+      background: #f1f5f9;
+      border: 1px solid var(--line);
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
+      text-decoration: none;
+      color: var(--accent);
+      font-weight: 600;
+    }
+    .quiz-question {
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px dashed var(--line);
+    }
+    .quiz-question strong {
+      color: #0f172a;
+    }
+    .quiz-feedback {
+      background: #f0fdf4;
+      border-left: 4px solid #22c55e;
+      padding: 0.6rem 0.9rem;
+      margin-top: 0.6rem;
+      font-size: 0.88rem;
+      border-radius: 0 4px 4px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="site">
+      <p class="eyebrow">Referência · Banco Mestre de Avaliações</p>
+      <h1>Quizzes e Fixação Pedagógica</h1>
+      <p class="lede">
+        Consulta consolidada de todas as questões, distratores técnicos, feedbacks pedagógicos e links oficiais de Quizz da plataforma Hotmart para ambos os cursos.
+      </p>
+      <p class="navlinks">
+        <a href="../index.html">Guia</a> ·
+        <a href="glossario.html">Glossário</a> ·
+        <a href="diagramas.html">Diagramas</a>
+      </p>
+    </header>
+
+    <h2 class="course-title">Curso 1: AILOCAL Essentials (Trilha Editada — Módulos 4 a 8)</h2>
+    <p>Conjunto completo de 14 avaliações conceituais com foco em fundamentos, quantização, motores e harness.</p>
+
+    <!-- Módulo 4 -->
+    <div class="quiz-card">
+      <h3>Aula 4.1 · Introdução à Trilha de Performance <a class="quiz-link" href="https://hotmart.com/pt-BR/club/ailocalbr/products/8404967/quiz/V73AQoR343" target="_blank">Quizz na Hotmart ↗</a></h3>
+      <div class="quiz-question">
+        <p><strong>Questão 1:</strong> Velocidade Interativa vs. Autonomia de Segundo Plano.</p>
+        <div class="quiz-feedback"><strong>Gabarito: C</strong> — Em loops autônomos noturnos, o aluno não fica esperando na frente da tela, priorizando a entrega sobre a velocidade bruta de tokens por segundo.</div>
+      </div>
+      <div class="quiz-question">
+        <p><strong>Questão 2:</strong> Divisão de Papéis entre Modelo e Motor de Inferência.</p>
+        <div class="quiz-feedback"><strong>Gabarito: A</strong> — O arquivo GGUF guarda pesos estáticos; o motor de inferência aloca memória e executa os cálculos na GPU/CPU.</div>
+      </div>
+      <div class="quiz-question">
+        <p><strong>Questão 3:</strong> Soberania de Dados e Privacidade Local.</p>
+        <div class="quiz-feedback"><strong>Gabarito: D</strong> — O processamento ocorre 100% no hardware interno do computador, garantindo que nenhum dado confidencial trafegue pela internet.</div>
+      </div>
+    </div>
+
+    <div class="quiz-card">
+      <h3>Aula 4.2 · O que é Rodar AI Local? Para que Serve? <a class="quiz-link" href="https://hotmart.com/pt-br/club/ailocalbr/products/8404967/content/meLyrLmj7n" target="_blank">Quizz na Hotmart ↗</a></h3>
+      <div class="quiz-question">
+        <p><strong>Questão 1:</strong> Arquitetura Cliente/Servidor vs. Inferência Nativa Local.</p>
+        <div class="quiz-feedback"><strong>Gabarito: B</strong> — Claude Desktop é uma casca visual que consome APIs remotas; rodar local significa alocar pesos na própria VRAM/RAM do computador.</div>
+      </div>
+      <div class="quiz-question">
+        <p><strong>Questão 2:</strong> Soberania de Código e Políticas Corporativas (NDA).</p>
+        <div class="quiz-feedback"><strong>Gabarito: A</strong> — Segredos comerciais, chaves de API e regras de negócio não podem ser expostos a servidores de nuvem de terceiros.</div>
+      </div>
+      <div class="quiz-question">
+        <p><strong>Questão 3:</strong> Dimensionamento de Hardware e Limite Físico da Máquina.</p>
+        <div class="quiz-feedback"><strong>Gabarito: C</strong> — A inteligência do modelo local é limitada pela capacidade física de memória e processamento da máquina do aluno.</div>
+      </div>
+    </div>
+
+    <div class="quiz-card">
+      <h3>Aula 4.3 · O que é Motor de Inferência? Para que Serve? <a class="quiz-link" href="https://hotmart.com/pt-br/club/ailocalbr/products/8404967/content/E4z9GpJQOl" target="_blank">Quizz na Hotmart ↗</a></h3>
+      <div class="quiz-question">
+        <p><strong>Questão 1:</strong> A Metáfora do Crânio e do Oxigênio / Game Engine.</p>
+        <div class="quiz-feedback"><strong>Gabarito: A</strong> — O motor de inferência atua como a game engine que carrega os assets 3D (pesos neurais) e comanda os shaders da placa de vídeo.</div>
+      </div>
+      <div class="quiz-question">
+        <p><strong>Questão 2:</strong> Diferença entre Motores (AnythingLLM vs. LM Studio vs. llama.cpp).</p>
+        <div class="quiz-feedback"><strong>Gabarito: B</strong> — AnythingLLM é focado em RAG e chat simples; LM Studio expõe servidor local e permite ajuste de flags e contexto.</div>
+      </div>
+      <div class="quiz-question">
+        <p><strong>Questão 3:</strong> Compatibilidade de Formatos de Peso (GGUF).</p>
+        <div class="quiz-feedback"><strong>Gabarito: D</strong> — O formato GGUF padroniza a leitura de tensores e metadados diretamente para execução em CPU/GPU.</div>
+      </div>
+    </div>
+
+    <!-- Módulo 5 -->
+    <div class="quiz-card">
+      <h3>Aula 5.1 · Compactando com Quantização (Q4) <a class="quiz-link" href="https://hotmart.com/pt-br/club/ailocalbr/products/8404967/content/V4Vy53oVO2" target="_blank">Quizz na Hotmart ↗</a></h3>
+      <div class="quiz-question">
+        <p><strong>Questão 1:</strong> Trade-off de Ponto Flutuante (FP16 para Int4).</p>
+        <div class="quiz-feedback"><strong>Gabarito: B</strong> — Reduzir a precisão numérica de 16 bits para 4 bits reduz em ~70% o tamanho da memória preservando ~90-95% da acurácia.</div>
+      </div>
+      <div class="quiz-question">
+        <p><strong>Questão 2:</strong> O Sweet Spot de Quantização.</p>
+        <div class="quiz-feedback"><strong>Gabarito: A</strong> — O padrão Q4_K_M ou Q4_0 oferece o melhor equilíbrio entre consumo de VRAM e capacidade de raciocínio.</div>
+      </div>
+    </div>
+
+    <div class="quiz-card">
+      <h3>Aula 5.2 · Compactando pelo Key-Value (KV) Cache <a class="quiz-link" href="https://hotmart.com/pt-BR/club/ailocalbr/products/8404967/content/k7QyoPQn7y" target="_blank">Quizz na Hotmart ↗</a></h3>
+      <div class="quiz-question">
+        <p><strong>Questão 1:</strong> Memória Dinâmica de Contexto vs. Tamanho do Arquivo.</p>
+        <div class="quiz-feedback"><strong>Gabarito: A</strong> — O arquivo em disco é só o peso fixo; o contexto da sessão aloca buffers adicionais no KV Cache na VRAM.</div>
+      </div>
+      <div class="quiz-question">
+        <p><strong>Questão 2:</strong> Quantização de KV Cache (Q4_0 / Q8_0).</p>
+        <div class="quiz-feedback"><strong>Gabarito: C</strong> — Reduz a pegada de memória do histórico em até 50%, permitindo janelas de contexto muito maiores na mesma GPU.</div>
+      </div>
+    </div>
+
+    <!-- Módulo 6 -->
+    <div class="quiz-card">
+      <h3>Aula 6.1 · Como Começar com AnythingLLM <a class="quiz-link" href="https://hotmart.com/pt-BR/club/ailocalbr/products/8404967/content/k7QyoPJJ7y" target="_blank">Quizz na Hotmart ↗</a></h3>
+      <div class="quiz-question">
+        <p><strong>Questão 1:</strong> RAG Local vs. Chat Genérico.</p>
+        <div class="quiz-feedback"><strong>Gabarito: B</strong> — RAG atua como memória de longo prazo pesquisando trechos exatos de contratos e PDFs locais antes de responder.</div>
+      </div>
+    </div>
+
+    <div class="quiz-card">
+      <h3>Aula 6.2 · Ajustando Parâmetros no LM Studio <a class="quiz-link" href="https://hotmart.com/pt-BR/club/ailocalbr/products/8404967/content/V4Vy53REO2" target="_blank">Quizz na Hotmart ↗</a></h3>
+      <div class="quiz-question">
+        <p><strong>Questão 1:</strong> Regra prática de 1 GB / 1B de parâmetros.</p>
+        <div class="quiz-feedback"><strong>Gabarito: A</strong> — Em Q4, cada bilhão de parâmetros ocupa aproximadamente 0,7 a 1 GB de memória de vídeo.</div>
+      </div>
+    </div>
+
+    <!-- Módulo 7 -->
+    <div class="quiz-card">
+      <h3>Aulas 7.1 a 7.4 · Raciocínio, Tool Calling e Conexão com Claude Code</h3>
+      <div class="quiz-question">
+        <p><strong>7.1 Raciocínio e Visão:</strong> Modelos de reflexão profunda ativam tokens de pensamento interno (chain-of-thought).</p>
+        <div class="quiz-feedback"><strong>Gabarito:</strong> Modelos de raciocínio são vitais para código e planejamento, mas devem ser evitados em saudações simples.</div>
+      </div>
+      <div class="quiz-question">
+        <p><strong>7.2 Tool Calling:</strong> Capacidade do modelo de estruturar chamadas JSON para funções externas (arquivos, testes, APIs).</p>
+        <div class="quiz-feedback"><strong>Gabarito:</strong> Exigir evidências pós-ação antes de comitar impede que modelos alucinem sucesso.</div>
+      </div>
+      <div class="quiz-question">
+        <p><strong>7.3 O que é Harness:</strong> A casca externa que equipa o modelo com ferramentas e sentidos práticos.</p>
+        <div class="quiz-feedback"><strong>Gabarito:</strong> Uma harness bem configurada permite que modelos menores superem modelos gigantes isolados.</div>
+      </div>
+      <div class="quiz-question">
+        <p><strong>7.4 Conexão Local /v1:</strong> Expor endpoint HTTP compatível com OpenAI no LM Studio e plugar no Claude Code via `.claude/settings.json`.</p>
+        <div class="quiz-feedback"><strong>Gabarito:</strong> Sufixo `/v1` é obrigatório para conformidade de rotas da API local.</div>
+      </div>
+    </div>
+
+    <!-- Módulo 8 -->
+    <div class="quiz-card">
+      <h3>Aulas 8.1 e 8.2 · Resumo Geral e Diagnóstico Final</h3>
+      <div class="quiz-question">
+        <p><strong>8.1 Resumo do Essencial:</strong> Consolidação de motores, quantizações Q4, backends de aceleração (CUDA/Metal/Vulkan) e KV Cache.</p>
+      </div>
+      <div class="quiz-question">
+        <p><strong>8.2 Diagnóstico de Prontidão:</strong> Validação de independência de quotas de API, compreensão do mecanismo de predição e checklist prático pessoal.</p>
+      </div>
+    </div>
+
+    <h2 class="course-title" style="background: #0284c7;">Curso 2: AILOCAL Essentials Para Devs (Trilha Na Íntegra)</h2>
+    <p>Trilha aprofundada de 7 aulas técnicas de engenharia de software com IA local (em andamento).</p>
+
+    <div class="quiz-card" style="border-left: 4px solid #0284c7;">
+      <h3>Aula 1 · Repositório AILOCAL e Otimização com llama.cpp</h3>
+      <p>Dimensionamento de hardware na VRAM, analogia do veículo equipado (harness) e dinâmica do KV Cache no prefill.</p>
+      <p style="color: var(--muted); font-size: 0.88rem;"><em>Status: Pronto para cadastro na Hotmart.</em></p>
+    </div>
+
+    <div class="quiz-card" style="border-left: 4px solid #0284c7;">
+      <h3>Aulas 2 a 7 · Em Desenvolvimento</h3>
+      <p>Aulas 2 (MoE e Offload), 3 (Samplers e Pareto), 4 (Skills e Workflow), 5 (MCP e Ferramentas), 6 (Guardrails e Hooks) e 7 (Agente Autônomo Noturno).</p>
+    </div>
+
+    <footer class="site" style="margin-top: 3rem; border-top: 1px solid var(--line); padding-top: 1.5rem;">
+      <p><a href="../index.html">← Voltar ao Guia Interativo</a></p>
+    </footer>
+  </div>
+</body>
+</html>

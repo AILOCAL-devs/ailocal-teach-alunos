@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Diagramas de Arquitetura — Workshop AILOCAL</title>
+  <link rel="stylesheet" href="../assets/css/web.css" />
+  <style>
+    .diagram-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin: 2rem 0;
+    }
+    .diagram-card h3 {
+      margin-top: 0;
+      color: var(--accent);
+    }
+    .diagram-flow {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 1.2rem;
+      border-radius: 6px;
+      font-family: monospace;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      overflow-x: auto;
+      margin: 1rem 0;
+    }
+    .diagram-flow .hl {
+      color: #38bdf8;
+      font-weight: bold;
+    }
+    .diagram-flow .box {
+      color: #a855f7;
+    }
+    .diagram-flow .arrow {
+      color: #f43f5e;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="site">
+      <p class="eyebrow">Referência · Arquitetura e Modelos Mentais</p>
+      <h1>Diagramas e Metáforas Visuais</h1>
+      <p class="lede">
+        Mapas visuais dos conceitos fundamentais de IA Local e Engenharia de Agentes: da analogia do veículo até a esteira de inferência, gestão de VRAM e guardrails.
+      </p>
+      <p class="navlinks">
+        <a href="../index.html">Guia</a> ·
+        <a href="glossario.html">Glossário</a> ·
+        <a href="quizzes.html">Quizzes</a>
+      </p>
+    </header>
+
+    <div class="diagram-card">
+      <h3>1. A Analogia do Veículo (Passageiro vs. Motorista vs. Veículo)</h3>
+      <p>
+        A metáfora que explica por que a <strong>Harness</strong> importa mais do que o modelo isolado.
+      </p>
+      <div class="diagram-flow">
+[ Você (Passageiro) ]
+        │ (Dá a direção e objetivos da demanda)
+        ▼
+[ Modelo LLM (Motorista) ] ── (Pesos treinados, raciocínio, capacidade de previsão)
+        │
+        ▼
+[ Agent Harness (Veículo Equipado) ]
+   ├── Ferramentas e Sensores (Leitura de arquivos, terminal, compilador)
+   ├── Protocolos de Extensão (MCP, APIs locais)
+   └── Barreiras de Proteção (Sandbox, hooks, guardrails anti-slop)
+      </div>
+      <p><em>Lição aprendida:</em> Colocar um piloto experiente em um carro desgovernado causa acidentes. Dar um veículo com telemetria e piloto automático a um motorista júnior permite cruzar a cidade com segurança.</p>
+    </div>
+
+    <div class="diagram-card">
+      <h3>2. Esteira Completa de Inferência Local</h3>
+      <p>
+        O pipeline de software que conecta o arquivo de pesos no disco até as ferramentas do seu editor.
+      </p>
+      <div class="diagram-flow">
+[ Arquivo .gguf (Pesos) ] 
+        │ (Quantizado em Q4/Q8 no disco)
+        ▼
+[ Motor de Inferência (llama.cpp / LM Studio) ]
+   ├── Carregamento de tensores na VRAM da GPU (ou offload na RAM)
+   ├── Gerenciamento do KV Cache (memória de curto prazo)
+   └── Exposição do Servidor HTTP na porta local (ex: localhost:18080/v1)
+        │
+        ▼ (Protocolo compatível OpenAI /v1/chat/completions)
+[ Harness de Desenvolvimento (Claude Code, Cursor, Antigravity) ]
+      </div>
+      <p><em>Lição aprendida:</em> O modelo não tem olhos nem mãos. O motor de inferência faz o cálculo numérico e a harness injeta ferramentas para que ele altere o mundo real.</p>
+    </div>
+
+    <div class="diagram-card">
+      <h3>3. KV Cache: Memória Dinâmica vs. Espaço de VRAM</h3>
+      <p>
+        Por que o consumo de memória sobe durante a conversa mesmo com o modelo já carregado.
+      </p>
+      <div class="diagram-flow">
+[ VRAM TOTAL DA GPU ] (ex: 8 GB)
+┌──────────────────────────────────────────────┬───────────────────────────────┐
+│     Pesos Fixos do Modelo (ex: ~4.5 GB)       │   KV Cache Dinâmico (~2-3 GB) │
+│     Alocados na inicialização (.gguf)        │   Cresce com histórico e docs │
+└──────────────────────────────────────────────┴───────────────────────────────┘
+                                               ▲
+   Prompt Prefill (lendo o arquivo do projeto) ┘
+   A cada novo token gerado, o histórico é armazenado no cache.
+      </div>
+      <p><em>Lição aprendida:</em> Deixar margem livre na VRAM para o KV Cache (ou quantizá-lo em Q4/Q8) impede que o modelo estoure a memória e caia para a lentidão da RAM do sistema.</p>
+    </div>
+
+    <div class="diagram-card">
+      <h3>4. Arquitetura MoE (Mixture of Experts) e Offload</h3>
+      <p>
+        Como rodar modelos gigantes (como 30B ou 70B) em placas de vídeo de entrada.
+      </p>
+      <div class="diagram-flow">
+[ Prompt do Usuário ] ──► [ Camada de Roteamento (Router / Gating) ]
+                               │
+            ┌──────────────────┴──────────────────┐
+            ▼ (Ativa 2 Experts)                   ▼
+      [ Expert 1 (Código) ]                [ Expert 2 (Lógica) ]
+        (Na VRAM rápida)                     (Na VRAM rápida)
+            │                                     │
+      [ Experts Inativos 3 a 8 ] (Descarregados na memória RAM do sistema)
+      </div>
+      <p><em>Lição aprendida:</em> Em MoE, apenas uma fração dos pesos é ativada por token. Os experts ativos rodam na VRAM enquanto os inativos podem aguardar na RAM sem congelar o computador.</p>
+    </div>
+
+    <div class="diagram-card">
+      <h3>5. Day / Night e a Fronteira de Pareto</h3>
+      <p>
+        A ausência de um "modelo perfeito único" e a escolha de dois pontos na fronteira de eficiência.
+      </p>
+      <div class="diagram-flow">
+▲ Inteligência / Capacidade
+│
+│                 ● Night Model (Mais denso, raciocínio longo, sem supervisão)
+│                /
+│               /  ◄─── Fronteira de Pareto Medida (Trade-off ótimo)
+│              /
+│   ● Day Model (Ultra rápido, 50+ TPS, supervisão humana ativa)
+│
+└────────────────────────────────────────────────────────► Velocidade (TPS)
+      </div>
+      <p><em>Lição aprendida:</em> Durante o dia, use um modelo rápido com você no controle. À noite, configure um loop autônomo com um modelo mais analítico enquanto você descansa.</p>
+    </div>
+
+    <div class="diagram-card">
+      <h3>6. A Metáfora da Boate: Guardrails e Sandbox</h3>
+      <p>
+        Como proteger seus repositórios e produção de ações perigosas do agente.
+      </p>
+      <div class="diagram-flow">
+[ Agente / Modelo ] ──► Tenta executar comando (ex: git push, rm -rf, ler .env)
+                              │
+                              ▼
+        [ Segurança da Porta (Guardrails & Hooks) ]
+         ├── Allow List: Comandos seguros liberados (cat, pytest, lint)
+         ├── Deny List: Bloqueio imediato (env, reset --hard, chaves de API)
+         └── Confirmação Humana: Parada obrigatória para ações irreversíveis
+      </div>
+      <p><em>Lição aprendida:</em> IAs locais menores podem cometer erros graves. Blindar o repositório com hooks no Git e sandbox impede que um vacilo quebre a sua infraestrutura.</p>
+    </div>
+
+    <footer class="site" style="margin-top: 3rem; border-top: 1px solid var(--line); padding-top: 1.5rem;">
+      <p><a href="../index.html">← Voltar ao Guia Interativo</a></p>
+    </footer>
+  </div>
+</body>
+</html>
